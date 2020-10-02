@@ -71,11 +71,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter layout demo',
       home: Scaffold(
         appBar: AppBar(
+          // Add the title section to the app body
           title: Text('Flutter layout demo'),
         ),
-        // Add the title section to the app body
-        body: Center(
-            child: Column(
+        // ListView allows the app to scroll on smaller devices
+        // Catches overflow text
+        body: ListView(
           children: [
             // Image needes to be imported in pubspec.yaml under 'assets' tag
             Image.asset('images/lake.jpg',
@@ -88,7 +89,7 @@ class MyApp extends StatelessWidget {
             buttonSection,
             textSection
           ],
-        )),
+        ),
       ),
     );
   }
