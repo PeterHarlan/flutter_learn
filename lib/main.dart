@@ -76,7 +76,18 @@ class MyApp extends StatelessWidget {
         // Add the title section to the app body
         body: Center(
             child: Column(
-          children: [titleSection, buttonSection, textSection],
+          children: [
+            // Image needes to be imported in pubspec.yaml under 'assets' tag
+            Image.asset('images/lake.jpg',
+                width: 600,
+                height: 240,
+                // 'BoxFit.cover' tells the framework that the image should
+                // be as small as possible but cover its entire render box
+                fit: BoxFit.cover),
+            titleSection,
+            buttonSection,
+            textSection
+          ],
         )),
       ),
     );
