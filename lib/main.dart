@@ -2,6 +2,57 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
+// Create state object for Forite state
+class FavoriteWidget extends StatefulWidget {
+  @override
+  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  // Define local variables
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _favoriteCount -= 1;
+        _isFavorited = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorited = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+            padding: EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited ? Icon(Icons.star) : Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: _toggleFavorite,
+          ),
+        ),
+        // Placing text in 'SizedBox' and settings its width
+        // prevents a discernible 'jump' when the text changes between the
+        // values of 40 and 41 - occurs when the width of these values change
+        SizedBox(
+            width: 18,
+            child: Container(
+              child: Text('$_favoriteCount'),
+            ))
+      ],
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,8 +86,7 @@ class MyApp extends StatelessWidget {
           // The last two items in the title row are a star icon, painted red,
           // and the text "41". The entire row is in a 'Container' and padded
           // along each edge by 32 pixels.
-          Icon(Icons.star, color: Colors.red[500]),
-          Text('41')
+          FavoriteWidget(),
         ],
       ),
     );
